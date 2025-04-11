@@ -1,0 +1,340 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时表情识别</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        .video-container {
+            position: relative;
+            width: 640px;
+            height: 480px;
+            margin: 0 auto;
+        }
+        #video {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .status-idle {
+            background-color: #f8f9fa;
+        }
+        .status-active {
+            background-color: #d1e7dd;
+        }
+        .emotion-item {
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">实时表情识别系统</h1>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>摄像头视图</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="video-container">
+                            <video id="video" autoplay playsinline></video>
+                            <canvas id="overlay"></canvas>
+                        </div>
+                        
+                        <div class="d-flex justify-content-center mt-3">
+                            <button id="startBtn" class="btn btn-primary me-2">开始检测</button>
+                            <button id="stopBtn" class="btn btn-danger" disabled>停止检测</button>
+                        </div>
+                        
+                        <div id="status" class="status status-idle text-center">
+                            准备就绪
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>当前检测结果</h5>
+                    </div>
+                    <div class="card-body" id="resultsContainer">
+                        <div class="text-center text-muted">
+                            尚未开始检测
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 全局变量
+        let video = null;
+        let canvas = null;
+        let ctx = null;
+        let stream = null;
+        let sessionId = null;
+        let detectionInterval = null;
+        let isDetecting = false;
+        
+        // 情绪颜色映射
+        const emotionColors = {
+            'anger': '#FF4500',
+            'disgust': '#9ACD32',
+            'fear': '#9932CC',
+            'happy': '#FFD700',
+            'sad': '#4169E1',
+            'surprised': '#FF69B4',
+            'neutral': '#20B2AA'
+        };
+        
+        // 情绪中文映射
+        const emotionNames = {
+            'anger': '生气',
+            'disgust': '厌恶',
+            'fear': '恐惧',
+            'happy': '高兴',
+            'sad': '伤心',
+            'surprised': '惊讶',
+            'neutral': '平静'
+        };
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            // 获取DOM元素
+            video = document.getElementById('video');
+            canvas = document.getElementById('overlay');
+            ctx = canvas.getContext('2d');
+            
+            // 设置Canvas大小
+            canvas.width = 640;
+            canvas.height = 480;
+            
+            // 绑定按钮事件
+            document.getElementById('startBtn').addEventListener('click', startDetection);
+            document.getElementById('stopBtn').addEventListener('click', stopDetection);
+        });
+        
+        // 开始检测
+        async function startDetection() {
+            try {
+                // 请求摄像头权限
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        width: { ideal: 640 },
+                        height: { ideal: 480 }
+                    }
+                });
+                
+                // 设置视频源
+                video.srcObject = stream;
+                
+                // 创建新会话
+                const response = await fetch('/api/start_detection', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+                
+                const data = await response.json();
+                sessionId = data.session_id;
+                
+                // 更新UI
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = false;
+                document.getElementById('status').className = 'status status-active';
+                document.getElementById('status').textContent = '检测中...';
+                
+                // 设置检测标志
+                isDetecting = true;
+                
+                // 开始定时检测
+                detectionInterval = setInterval(detectFrame, 500);
+                
+            } catch (error) {
+                console.error('启动摄像头失败:', error);
+                alert('无法访问摄像头，请确保允许浏览器使用摄像头');
+            }
+        }
+        
+        // 停止检测
+        async function stopDetection() {
+            // 停止定时器
+            clearInterval(detectionInterval);
+            
+            // 停止视频流
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            video.srcObject = null;
+            
+            // 清空Canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 更新UI
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+            document.getElementById('status').className = 'status status-idle';
+            document.getElementById('status').textContent = '检测已停止';
+            
+            // 发送停止请求
+            if (sessionId) {
+                try {
+                    const response = await fetch('/api/stop_detection', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ session_id: sessionId })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    // 显示结果链接
+                    document.getElementById('resultsContainer').innerHTML = `
+                        <div class="alert alert-success">
+                            检测已完成！
+                            <a href="/results/${sessionId}" target="_blank" class="btn btn-sm btn-outline-primary mt-2">
+                                查看完整结果
+                            </a>
+                        </div>
+                    `;
+                    
+                } catch (error) {
+                    console.error('停止检测请求失败:', error);
+                }
+            }
+            
+            // 重置检测状态
+            isDetecting = false;
+            sessionId = null;
+        }
+        
+        // 检测单帧
+        async function detectFrame() {
+            if (!isDetecting || !video.videoWidth) return;
+            
+            try {
+                // 捕获当前视频帧
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = video.videoWidth;
+                tempCanvas.height = video.videoHeight;
+                
+                const tempCtx = tempCanvas.getContext('2d');
+                tempCtx.drawImage(video, 0, 0);
+                
+                // 转换为Base64
+                const imageData = tempCanvas.toDataURL('image/jpeg', 0.8);
+                
+                // 发送检测请求
+                const response = await fetch('/api/detect', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        image: imageData,
+                        session_id: sessionId
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // 更新检测结果显示
+                updateResults(data.results);
+                
+                // 绘制检测框
+                drawDetectionBoxes(data.results);
+                
+            } catch (error) {
+                console.error('检测请求失败:', error);
+            }
+        }
+        
+        // 更新结果显示
+        function updateResults(results) {
+            const container = document.getElementById('resultsContainer');
+            
+            if (!results || results.length === 0) {
+                container.innerHTML = '<div class="text-center text-muted">未检测到人脸</div>';
+                return;
+            }
+            
+            let html = '';
+            
+            results.forEach((result, index) => {
+                const emotionName = emotionNames[result.emotion] || result.emotion;
+                const color = emotionColors[result.emotion] || '#888';
+                
+                html += `
+                    <div class="mb-3">
+                        <div class="emotion-item" style="background-color: ${color}">
+                            <strong>人脸 #${index + 1}:</strong> ${emotionName} (${(result.confidence * 100).toFixed(2)}%)
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // 绘制检测框
+        function drawDetectionBoxes(results) {
+            // 清空Canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (!results || results.length === 0) return;
+            
+            // 计算缩放比例
+            const scaleX = canvas.width / video.videoWidth;
+            const scaleY = canvas.height / video.videoHeight;
+            
+            results.forEach(result => {
+                const [x, y, w, h] = result.box;
+                const color = emotionColors[result.emotion] || '#FFFFFF';
+                
+                // 绘制边框
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.strokeRect(x * scaleX, y * scaleY, w * scaleX, h * scaleY);
+                
+                // 绘制标签背景
+                ctx.fillStyle = color;
+                const emotionName = emotionNames[result.emotion] || result.emotion;
+                const text = `${emotionName} ${(result.confidence * 100).toFixed(0)}%`;
+                const textWidth = ctx.measureText(text).width + 10;
+                
+                ctx.fillRect(x * scaleX, (y * scaleY) - 30, textWidth, 25);
+                
+                // 绘制标签文本
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '16px Arial';
+                ctx.fillText(text, (x * scaleX) + 5, (y * scaleY) - 10);
+            });
+        }
+    </script>
+</body>
+</html>

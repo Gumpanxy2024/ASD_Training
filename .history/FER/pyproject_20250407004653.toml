@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "FER"
+version = "0.1.0"
+description = "FaceRecognitionProject"
+authors = ["ganxy"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dlib = "19.23.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,47 @@
+name: face-recognition2
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+  - conda-forge/label/cf201901
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+  - defaults
+name: deepenv
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - pip
+  - numpy
+  - scipy
+  - matplotlib
+  - opencv
+  - cmake
+  - dlib
+  - libpng
+  - jpeg
+  - zlib
+  - mkl
+  - tbb
+  - sqlite
+  - ca-certificates
+  - openssl
+  - pip:
+      - keras
+      - face-recognition
+      - face-recognition-models
+      - absl-py
+      - h5py>=3.10
+      - protobuf>=4.21
+      - scikit-learn
+      - pillow
+      - requests
+      - jinja2
+      - werkzeug
+      - typing-extensions
+      - importlib-metadata
+      - tqdm
+      - pyyaml
+      - prettytable
+      - simplejson
+      - ttkbootstrap
+      - pyecharts

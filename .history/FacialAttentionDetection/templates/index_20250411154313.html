@@ -1,0 +1,65 @@
+-web-demo/templates/index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面部注意力检测</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>面部注意力检测系统</h1>
+        
+        <div class="main-content">
+            <div class="video-container">
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="overlay" class="overlay"></canvas>
+                <div class="status-indicator" id="status">等待摄像头...</div>
+                <div class="controls">
+                    <button id="startBtn">开始检测</button>
+                    <button id="resetBtn">重置统计</button>
+                    <button id="saveBtn">保存记录</button>
+                </div>
+            </div>
+            
+            <div class="info-panel">
+                <h2>检测统计</h2>
+                <div class="stat-item">
+                    <span>运行时间:</span>
+                    <span id="elapsed-time">00:00:00</span>
+                </div>
+                <div class="stat-item">
+                    <span>分心次数:</span>
+                    <span id="distraction-count">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>总分心时间:</span>
+                    <span id="distraction-time">0.0秒</span>
+                </div>
+                <div class="stat-item">
+                    <span>分心占比:</span>
+                    <span id="distraction-percentage">0.0%</span>
+                </div>
+                <div class="stat-item">
+                    <span>当前状态:</span>
+                    <span id="current-status">未检测</span>
+                </div>
+                <div class="stat-item">
+                    <span>眼睛开度:</span>
+                    <span id="ear-value">0.00</span>
+                </div>
+                
+                <h3>注意力历史</h3>
+                <div class="chart-container">
+                    <canvas id="attention-chart"></canvas>
+                </div>
+                
+                <div class="messages" id="messages"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
