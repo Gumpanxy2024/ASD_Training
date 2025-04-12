@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互动训练 - 星语助手</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 欢迎启动页面 -->
+    <div id="welcome-screen" class="fixed top-0 left-0 w-full h-full z-50 splash-screen">
+        <div class="h-full flex flex-col items-center justify-center px-6">
+            <div class="welcome-content">
+                <div class="welcome-logo-container">
+                    <img src="/static/images/logo.png" alt="欢迎形象" class="welcome-logo">
+                </div>
+                <div class="welcome-text-container">
+                    <h1 class="welcome-title fade-in">表情理解训练</h1>
+                    <div class="welcome-message">
+                        <p id="typing-text-1" class="typing-text opacity-0">嗨！我是星语助手，我会和你一起学习表情！</p>
+                        <p id="typing-text-2" class="typing-text opacity-0">在这个训练中，你会看到:</p>
+                        <ul class="welcome-list opacity-0">
+                            <li class="list-item-animation">
+                                <i class="fas fa-smile text-yellow-500"></i>
+                                <span>不同的表情图片</span>
+                            </li>
+                            <li class="list-item-animation">
+                                <i class="fas fa-school text-blue-500"></i>
+                                <span>不同的场景故事</span>
+                            </li>
+                            <li class="list-item-animation">
+                                <i class="fas fa-star text-purple-500"></i>
+                                <span>你需要选择合适的表情</span>
+                            </li>
+                        </ul>
+                        <p id="typing-text-3" class="typing-text opacity-0">准备好开始这段奇妙的表情之旅了吗？</p>
+                    </div>
+                    <button id="welcome-start-btn" class="btn-primary">
+                        <i class="fas fa-play-circle"></i>
+                        <span>开始表情训练</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="training-content" class="app-container bg-gray-100 hidden">
+        <div class="main-container p-6">
+            <!-- 顶部导航 -->
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-4xl font-bold text-blue-600">互动训练</h1>
+                <div>
+                    <button id="startTrainingBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                        <i class="fas fa-play mr-2"></i>开始训练
+                    </button>
+                    <button id="stopTrainingBtn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 ml-2" disabled>
+                        <i class="fas fa-stop mr-2"></i>终止训练
+                    </button>
+                    <button id="saveRecordsBtn" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 ml-2">
+                        <i class="fas fa-save mr-2"></i>保存记录
+                    </button>
+                    <button id="resetBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 ml-2">
+                        <i class="fas fa-redo mr-2"></i>重新开始
+                    </button>
+                    <button id="settings-btn" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 ml-2">
+                        <i class="fas fa-cog mr-2"></i>设置
+                    </button>
+                </div>
+            </div>
+
+            <!-- 场景选择区 -->
+            <div id="scene-selector" class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">选择训练场景：</h3>
+                <div class="grid grid-cols-5 gap-4">
+                    <div class="scene-option scene-selected" data-scene="school">
+                        <div class="bg-blue-100 p-4 text-center">
+                            <i class="fas fa-school text-3xl text-blue-600 mb-2"></i>
+                            <p class="font-medium">学校</p>
+                        </div>
+                    </div>
+                    <div class="scene-option" data-scene="social">
+                        <div class="bg-green-100 p-4 text-center">
+                            <i class="fas fa-users text-3xl text-green-600 mb-2"></i>
+                            <p class="font-medium">社交</p>
+                        </div>
+                    </div>
+                    <div class="scene-option" data-scene="transport">
+                        <div class="bg-yellow-100 p-4 text-center">
+                            <i class="fas fa-bus text-3xl text-yellow-600 mb-2"></i>
+                            <p class="font-medium">交通</p>
+                        </div>
+                    </div>
+                    <div class="scene-option" data-scene="food">
+                        <div class="bg-red-100 p-4 text-center">
+                            <i class="fas fa-utensils text-3xl text-red-600 mb-2"></i>
+                            <p class="font-medium">吃饭</p>
+                        </div>
+                    </div>
+                    <div class="scene-option" data-scene="family">
+                        <div class="bg-purple-100 p-4 text-center">
+                            <i class="fas fa-home text-3xl text-purple-600 mb-2"></i>
+                            <p class="font-medium">家庭关系</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主要内容区域 -->
+            <div class="flex h-full">
+                <!-- 左侧区域：重新划分为三部分 -->
+                <div class="w-1/4 pr-4 flex flex-col">
+                    <!-- 1. 摄像头/虚拟形象区域 -->
+                    <div class="avatar-container rounded-lg shadow-md mb-4" style="height: 33%;">
+                        <!-- 虚拟形象替代摄像头 -->
+                        <img id="avatar-image" src="/static/images/virtual.png" alt="虚拟助手" class="avatar-animation w-full h-full object-cover">
+                        <!-- 隐藏的视频元素用于检测 -->
+                        <video id="video" class="video-hidden" autoplay playsinline></video>
+                        <div class="avatar-status">
+                            <i class="fas fa-smile-beam mr-2"></i> 我在看着你
+                        </div>
+                        <div class="avatar-controls">
+                            <div class="avatar-button" id="avatar-mirror">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="avatar-button" id="toggle-camera" style="display:none">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2. 情绪识别结果显示 -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm mb-4" style="height: 33%;">
+                        <h4 class="text-sm font-semibold text-gray-700 mb-2">当前情绪</h4>
+                        <div id="current-emotion" class="text-center py-2">
+                            <span class="text-4xl">😊</span>
+                            <p class="text-sm text-gray-700 mt-2">准备检测</p>
+                            <p class="text-xs text-gray-500">等待训练开始...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 3. 专注度显示 -->
+                    <div class="bg-white p-3 rounded-lg shadow-sm" style="height: 33%;">
+                        <h4 class="text-sm font-semibold text-gray-700 mb-2">专注状态</h4>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                            <div id="attention-bar" class="bg-green-600 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p id="attention-status" class="text-xs text-gray-500">准备就绪，开始训练后监测专注度</p>
+                        
+                        <!-- 专注度统计 -->
+                        <div class="grid grid-cols-2 gap-2 mt-2">
+                            <div class="bg-blue-50 p-2 rounded-lg">
+                                <div class="text-xs text-blue-600 mb-1">分心次数</div>
+                                <div id="distraction-count" class="text-sm font-bold text-blue-700">0</div>
+                            </div>
+                            <div class="bg-purple-50 p-2 rounded-lg">
+                                <div class="text-xs text-purple-600 mb-1">分心时间</div>
+                                <div id="distraction-time" class="text-sm font-bold text-purple-700">0秒</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧互动训练区 -->
+                <div class="w-3/4 flex flex-col">
+                    <!-- 互动训练容器 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 flex-grow">
+                        <!-- 场景提示词 -->
+                        <div class="mb-8 text-center">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">场景理解训练 - <span id="current-scene-label">学校场景</span></h3>
+                            <div class="p-4 bg-blue-50 rounded-lg relative">
+                                <!-- 添加导航按钮容器 -->
+                                <div class="question-nav flex justify-between absolute top-0 left-0 right-0 px-4 -mt-7">
+                                    <button id="prev-btn" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 disabled:opacity-50 text-base" disabled>
+                                        <i class="fas fa-arrow-left mr-2"></i>上一题
+                                    </button>
+                                    <button id="next-btn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 text-base" disabled>
+                                        下一题<i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                                <p id="question-text" class="text-lg text-gray-700">请选择表情回答问题</p>
+                            </div>
+                        </div>
+
+                        <!-- 表情图片选择区 -->
+                        <div class="grid grid-cols-4 gap-4 mb-8">
+                            <div class="emotion-option rounded-lg overflow-hidden shadow hover:shadow-lg" data-emotion="happy">
+                                <img src="/static/images/happy.png" alt="开心表情" class="w-full h-auto">
+                                <div class="p-3 text-center bg-gray-50">开心</div>
+                            </div>
+                            <div class="emotion-option rounded-lg overflow-hidden shadow hover:shadow-lg" data-emotion="sad">
+                                <img src="/static/images/sadness.png" alt="伤心表情" class="w-full h-auto">
+                                <div class="p-3 text-center bg-gray-50">伤心</div>
+                            </div>
+                            <div class="emotion-option rounded-lg overflow-hidden shadow hover:shadow-lg" data-emotion="angry">
+                                <img src="/static/images/angry.png" alt="生气表情" class="w-full h-auto">
+                                <div class="p-3 text-center bg-gray-50">生气</div>
+                            </div>
+                            <div class="emotion-option rounded-lg overflow-hidden shadow hover:shadow-lg" data-emotion="neutral">
+                                <img src="/static/images/neutral.png" alt="平和表情" class="w-full h-auto">
+                                <div class="p-3 text-center bg-gray-50">平和</div>
+                            </div>
+                        </div>
+
+                        <!-- 答案反馈区 -->
+                        <div id="feedback-correct" class="feedback p-4 bg-green-100 border-l-4 border-green-400 rounded-md mb-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p id="feedback-correct-text" class="text-green-700">回答正确！</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="feedback-incorrect" class="feedback p-4 bg-red-100 border-l-4 border-red-400 rounded-md mb-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-times-circle text-red-500"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p id="feedback-incorrect-text" class="text-red-700">再仔细看看，表情是什么？</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 训练完成按钮，默认隐藏 -->
+                        <div id="training-complete" class="text-center mt-8 hidden">
+                            <p class="text-lg text-green-600 font-bold mb-4">恭喜你！全部题目已完成！</p>
+                            <button id="complete-training-btn" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 text-lg">
+                                <i class="fas fa-check-circle mr-2"></i>结束训练
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 底部进度条 -->
+                    <div class="mt-4 bg-white rounded-lg shadow-md p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-gray-700">训练进度</span>
+                            <span id="progress-text" class="text-sm font-medium text-blue-600">0/4</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注意力提醒弹窗 -->
+    <div id="attention-alert" class="attention-alert hidden">
+        <div class="bg-yellow-500 text-white font-bold px-8 py-4 rounded-lg shadow-lg">
+            <i class="fas fa-exclamation-triangle mr-2"></i> 你分心了...请集中注意力！
+        </div>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="attention-sound" src="/static/sounds/alert.mp3" preload="auto"></audio>
+
+    <!-- 设置弹窗 -->
+    <div id="settings-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-96">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold text-gray-800">设置</h3>
+                <button id="close-settings" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">性别选择</label>
+                <div class="flex space-x-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="gender" value="female" class="form-radio" checked>
+                        <span class="ml-2">女生</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="gender" value="male" class="form-radio">
+                        <span class="ml-2">男生</span>
+                    </label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">背景音乐</label>
+                <label class="inline-flex items-center">
+                    <input type="checkbox" id="music-toggle" class="form-checkbox" checked>
+                    <span class="ml-2">开启舒缓背景音乐</span>
+                </label>
+            </div>
+            <div class="flex justify-end">
+                <button id="save-settings" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    保存设置
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 保存记录的模态框 -->
+    <div id="save-modal" class="fixed inset-0 bg-gray-700 bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-lg font-semibold text-gray-800">训练记录已保存</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="save-result" class="mb-6 text-gray-700">
+                <p class="mb-2">您的训练记录已成功保存。以下是训练摘要：</p>
+                <div id="training-summary" class="bg-gray-100 p-4 rounded-lg text-sm">
+                    <!-- 这里将由JavaScript填充 -->
+                </div>
+            </div>
+            <div class="flex justify-end">
+                <button id="download-summary" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-download mr-2"></i>下载摘要
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引用自定义样式 -->
+    <style>
+        .app-container {
+            height: 100vh;
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .avatar-container {
+            position: relative;
+            overflow: hidden;
+            background-color: #f0f9ff;
+            border-radius: 12px;
+            border: 3px solid #4CAF50;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .avatar-status {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(76, 175, 80, 0.6);
+            padding: 8px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        .emotion-option, .scene-option, .welcome-list li, .welcome-list li i, .btn-primary, .avatar-button {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .emotion-option:hover, .btn-primary:hover {
+            transform: scale(1.05);
+        }
+        .scene-option:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .welcome-list li:hover {
+            background-color: rgba(237, 242, 247, 0.9);
+            transform: translateX(5px);
+        }
+        .welcome-list li:hover i {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 8px rgba(66, 153, 225, 0.25);
+        }
+        .avatar-button:hover {
+            background-color: rgba(255,255,255,0.8);
+        }
+        .emotion-selected {
+            border: 3px solid #3B82F6;
+            transform: scale(1.05);
+        }
+        .scene-selected {
+            border: 2px solid #3B82F6;
+            background-color: #EFF6FF;
+        }
+        .avatar-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        .avatar-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            display: flex;
+            gap: 8px;
+        }
+        .video-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Splash 欢迎屏幕样式 */
+        .splash-screen {
+            background: linear-gradient(135deg, #4299e1 0%, #fef3c7 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加背景图案 */
+        .splash-screen::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 20%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 45%);
+            z-index: 0;
+        }
+        
+        .welcome-content {
+            max-width: 1400px;
+            width: 98%;
+            padding: 3.5rem;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.05),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+                        box-shadow 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            color: #333;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .welcome-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 25px 70px rgba(0, 0, 0, 0.15),
+                0 1px 3px rgba(0, 0, 0, 0.05),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+        
+        .welcome-content .welcome-logo-container {
+            flex: 0 0 180px;
+            margin-right: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .welcome-content .welcome-text-container {
+            flex: 1;
+            text-align: center;
+            padding-left: 1rem;
+            min-width: 0;
+        }
+        
+        .welcome-logo {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            animation: 
+                bounceIn 1.2s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+                float 4s ease-in-out 1.2s infinite;
+        }
+        
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            animation: fadeIn 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.3s forwards;
+            opacity: 0;
+            text-align: center;
+        }
+        
+        .welcome-message {
+            margin-bottom: 2.5rem;
+            position: relative;
+            text-align: center;
+        }
+        
+        .welcome-message p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+            color: #4a5568;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        
+        .welcome-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.8rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            width: 100%;
+            transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        }
+        
+        .welcome-list li {
+            flex: 0 0 auto;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background-color: rgba(237, 242, 247, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .welcome-list li:hover {
+            background-color: rgba(237, 242, 247, 0.9);
+            transform: translateX(5px);
+        }
+        
+        .welcome-list li i {
+            font-size: 1.4rem;
+            margin-right: 1rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(66, 153, 225, 0.15);
+            color: #4299e1;
+            transition: all 0.3s ease;
+        }
+        
+        .welcome-list li:hover i {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 8px rgba(66, 153, 225, 0.25);
+        }
+        
+        .list-item-animation {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+                        opacity 0.6s ease-out;
+        }
+        
+        .list-item-animation.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .btn-primary {
+            background-color: #4299e1;
+            color: white;
+            padding: 0.9rem 2.2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            box-shadow: 
+                0 10px 20px rgba(66, 153, 225, 0.3),
+                0 3px 6px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(66, 153, 225, 0.1) inset;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.5rem;
+            animation: pulse-welcome 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary i {
+            margin-right: 10px;
+            font-size: 1.2em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        #welcome-start-btn {
+            display: inline-block;
+            margin-top: 2rem;
+        }
+        
+        /* 添加按钮悬停时的光效 */
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.13) 77%,
+                rgba(255, 255, 255, 0.5) 92%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(45deg);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .btn-primary:hover::after {
+            opacity: 1;
+            animation: shine 1.5s forwards;
+        }
+        
+        .btn-primary span, .btn-primary i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 
+                0 15px 30px rgba(66, 153, 225, 0.4),
+                0 5px 10px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(66, 153, 225, 0.2) inset;
+            background-color: #3182ce;
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: rotate(45deg) translateY(-120%);
+            }
+            100% {
+                transform: rotate(45deg) translateY(120%);
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes bounceIn {
+            0% { 
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            20% {
+                transform: scale(1.1);
+            }
+            40% {
+                transform: scale(0.9);
+            }
+            60% {
+                transform: scale(1.03);
+                opacity: 1;
+            }
+            80% {
+                transform: scale(0.97);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+            100% { transform: translateY(0); }
+        }
+        
+        .fade-out {
+            animation: fadeOut 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) forwards;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.95); }
+        }
+        
+        @keyframes pulse-welcome {
+            0% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(66, 153, 225, 0.5);
+            }
+            30% { 
+                transform: scale(1.04); 
+                box-shadow: 0 0 0 10px rgba(66, 153, 225, 0);
+            }
+            60% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(66, 153, 225, 0);
+            }
+            100% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(66, 153, 225, 0);
+            }
+        }
+        
+        /* 打字效果相关样式 */
+        .typing-text {
+            overflow: hidden;
+            white-space: pre-wrap;
+            border-right: 3px solid transparent;
+            margin: 0 auto;
+            text-align: center;
+            max-width: 100%;
+            display: block;
+            font-weight: 500;
+            color: #4a5568;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            width: auto;
+            visibility: hidden;
+        }
+        
+        .typing-animation {
+            animation: blink-caret 0.75s step-end infinite;
+            border-right-color: #4299e1;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .typing-done {
+            opacity: 1;
+            border-right-color: transparent;
+            white-space: normal;
+            animation: fadeBrighter 0.6s forwards;
+            letter-spacing: normal;
+            visibility: visible;
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #4299e1; }
+        }
+        
+        @keyframes fadeBrighter {
+            from { color: #4a5568; letter-spacing: 0.02em; }
+            to { color: #2d3748; letter-spacing: normal; }
+        }
+
+        .attention-alert {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50px);
+            z-index: 1000;
+            transition: opacity 0.3s ease, transform 0.5s ease;
+            opacity: 0;
+        }
+        
+        .attention-alert.show-alert {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-52%) rotate(-2deg); }
+            20%, 40%, 60%, 80% { transform: translateX(-48%) rotate(2deg); }
+        }
+
+        .feedback {
+            transition: all 0.5s ease;
+            opacity: 0;
+            display: none;
+        }
+
+        .feedback.show {
+            opacity: 1;
+            display: block;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* 恢复scene-option样式 */
+        .scene-option {
+            border: 2px solid transparent;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* 恢复avatar-button样式，确保按钮显示正确 */
+        .avatar-button {
+            background-color: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4B5563;
+        }
+    </style>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "timestamp": "20250412_224958",
+  "emotion_stats": {
+    "emotion_stats": {
+      "surprised": {
+        "count": 19,
+        "min_confidence": 0.3733,
+        "max_confidence": 0.9112,
+        "avg_confidence": 0.6132
+      },
+      "neutral": {
+        "count": 18,
+        "min_confidence": 0.3426,
+        "max_confidence": 0.7211,
+        "avg_confidence": 0.5124
+      },
+      "fear": {
+        "count": 10,
+        "min_confidence": 0.3506,
+        "max_confidence": 0.5912,
+        "avg_confidence": 0.4856
+      }
+    },
+    "primary_emotion": "surprised",
+    "total_events": 47,
+    "session_duration": 78.28
+  },
+  "attention_stats": {
+    "total_distractions": 8,
+    "total_time": 22.28495502471924
+  },
+  "training_data": {
+    "correctAnswers": 5,
+    "totalQuestions": 9,
+    "accuracy": 56,
+    "trainingDuration": 50,
+    "scene": "school",
+    "distractionCount": 0,
+    "distractionTime": 0
+  }
+}

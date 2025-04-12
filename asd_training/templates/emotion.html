@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情绪检测 - ASD训练系统</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">情绪检测</h1>
+            <a href="/" class="text-blue-600 hover:text-blue-800">
+                <i class="fas fa-home mr-2"></i>返回主页
+            </a>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 视频显示区域 -->
+            <div class="bg-white rounded-lg shadow-lg p-4">
+                <h2 class="text-xl font-semibold mb-4">实时视频</h2>
+                <div class="relative">
+                    <video id="video" class="w-full rounded-lg" autoplay playsinline></video>
+                    <div id="emotion-overlay" class="absolute inset-0"></div>
+                </div>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <button id="startBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                        <i class="fas fa-play mr-2"></i>开始检测
+                    </button>
+                    <button id="stopBtn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700" disabled>
+                        <i class="fas fa-stop mr-2"></i>停止检测
+                    </button>
+                </div>
+            </div>
+
+            <!-- 情绪分析结果 -->
+            <div class="bg-white rounded-lg shadow-lg p-4">
+                <h2 class="text-xl font-semibold mb-4">情绪分析</h2>
+                <div id="emotion-results" class="space-y-4">
+                    <div class="text-center text-gray-500">
+                        <i class="fas fa-info-circle text-2xl mb-2"></i>
+                        <p>点击"开始检测"按钮开始分析</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const emotionResults = document.getElementById('emotion-results');
+        let isDetecting = false;
+        let stream = null;
+
+        // 获取摄像头访问权限
+        async function setupCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error('摄像头访问失败:', err);
+                alert('无法访问摄像头，请确保已授予权限');
+            }
+        }
+
+        // 开始检测
+        startBtn.addEventListener('click', async () => {
+            if (!stream) {
+                await setupCamera();
+            }
+            isDetecting = true;
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            startDetection();
+        });
+
+        // 停止检测
+        stopBtn.addEventListener('click', () => {
+            isDetecting = false;
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        });
+
+        // 开始情绪检测
+        async function startDetection() {
+            while (isDetecting) {
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0);
+                const imageData = canvas.toDataURL('image/jpeg');
+
+                try {
+                    const response = await fetch('/api/emotion/detect', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ image: imageData }),
+                    });
+
+                    const data = await response.json();
+                    if (data.status === 'success') {
+                        updateEmotionResults(data.results);
+                    }
+                } catch (error) {
+                    console.error('检测请求失败:', error);
+                }
+
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+        }
+
+        // 更新情绪结果显示
+        function updateEmotionResults(results) {
+            emotionResults.innerHTML = '';
+            results.forEach((result, index) => {
+                const emotionDiv = document.createElement('div');
+                emotionDiv.className = 'bg-gray-50 p-4 rounded-lg';
+                emotionDiv.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold">人脸 ${index + 1}</span>
+                        <span class="text-sm text-gray-500">置信度: ${(result.confidence * 100).toFixed(1)}%</span>
+                    </div>
+                    <div class="text-lg font-medium text-${getEmotionColor(result.emotion)}-600">
+                        ${getEmotionIcon(result.emotion)} ${getEmotionText(result.emotion)}
+                    </div>
+                `;
+                emotionResults.appendChild(emotionDiv);
+            });
+        }
+
+        // 获取情绪对应的颜色
+        function getEmotionColor(emotion) {
+            const colors = {
+                'happy': 'green',
+                'sad': 'blue',
+                'angry': 'red',
+                'neutral': 'gray',
+                'surprise': 'yellow',
+                'fear': 'purple',
+                'disgust': 'orange'
+            };
+            return colors[emotion] || 'gray';
+        }
+
+        // 获取情绪对应的图标
+        function getEmotionIcon(emotion) {
+            const icons = {
+                'happy': '😊',
+                'sad': '😢',
+                'angry': '😠',
+                'neutral': '😐',
+                'surprise': '😮',
+                'fear': '😨',
+                'disgust': '🤢'
+            };
+            return icons[emotion] || '😐';
+        }
+
+        // 获取情绪对应的中文文本
+        function getEmotionText(emotion) {
+            const texts = {
+                'happy': '开心',
+                'sad': '悲伤',
+                'angry': '生气',
+                'neutral': '平静',
+                'surprise': '惊讶',
+                'fear': '害怕',
+                'disgust': '厌恶'
+            };
+            return texts[emotion] || '未知';
+        }
+
+        // 页面加载时设置摄像头
+        setupCamera();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,59 @@
+{
+  "timestamp": "20250412_222333",
+  "emotion_stats": {
+    "emotion_stats": {
+      "neutral": {
+        "count": 35,
+        "min_confidence": 0.3294,
+        "max_confidence": 0.9745,
+        "avg_confidence": 0.6971
+      },
+      "happy": {
+        "count": 4,
+        "min_confidence": 0.3582,
+        "max_confidence": 0.7446,
+        "avg_confidence": 0.6193
+      },
+      "surprised": {
+        "count": 8,
+        "min_confidence": 0.439,
+        "max_confidence": 0.7542,
+        "avg_confidence": 0.5714
+      },
+      "fear": {
+        "count": 8,
+        "min_confidence": 0.2983,
+        "max_confidence": 0.8306,
+        "avg_confidence": 0.5227
+      },
+      "sad": {
+        "count": 2,
+        "min_confidence": 0.8672,
+        "max_confidence": 0.8931,
+        "avg_confidence": 0.8801
+      },
+      "anger": {
+        "count": 1,
+        "min_confidence": 0.4439,
+        "max_confidence": 0.4439,
+        "avg_confidence": 0.4439
+      }
+    },
+    "primary_emotion": "neutral",
+    "total_events": 58,
+    "session_duration": 130.7
+  },
+  "attention_stats": {
+    "total_distractions": 6,
+    "total_time": 12.331485748291016
+  },
+  "training_data": {
+    "correctAnswers": 0,
+    "totalQuestions": 0,
+    "accuracy": 0,
+    "trainingDuration": 56,
+    "scene": "school",
+    "distractionCount": 0,
+    "distractionTime": 0
+  }
+}
