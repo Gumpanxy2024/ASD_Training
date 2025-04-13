@@ -7243,3 +7243,627 @@ TypeError: Object of type int64 is not JSON serializable
 2025-04-12 22:52:11,630 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 22:52:11] "GET /static/js/script.js HTTP/1.1" 200 -
 2025-04-12 22:52:11,765 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 22:52:11] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
 2025-04-12 22:52:11,949 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 22:52:11] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:04:23,113 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:04:23,118 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:04:25,095 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:04:25,095 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:04:25,845 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:04:25,845 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:04:25,845 - asd_training - INFO - ===============================================
+2025-04-12 23:04:25,845 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:04:25,845 - asd_training - INFO - 运行环境: development
+2025-04-12 23:04:25,845 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:04:25,845 - asd_training - INFO - ===============================================
+2025-04-12 23:04:25,857 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.11:8000
+2025-04-12 23:04:25,857 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-12 23:04:25,864 - werkzeug - INFO -  * Restarting with watchdog (inotify)
+2025-04-12 23:04:27,561 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:04:27,563 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:04:28,545 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:04:28,545 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:04:29,208 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:04:29,208 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:04:29,208 - asd_training - INFO - ===============================================
+2025-04-12 23:04:29,208 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:04:29,208 - asd_training - INFO - 运行环境: development
+2025-04-12 23:04:29,208 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:04:29,208 - asd_training - INFO - ===============================================
+2025-04-12 23:04:29,211 - werkzeug - WARNING -  * Debugger is active!
+2025-04-12 23:04:29,221 - werkzeug - INFO -  * Debugger PIN: 942-683-130
+2025-04-12 23:04:31,237 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "GET / HTTP/1.1" 200 -
+2025-04-12 23:04:31,269 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:31,270 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:04:31,573 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:31,686 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:31,687 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:04:31,689 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:31,692 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:31,692 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:31,889 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:31] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:04:32,019 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:32] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:04:37,221 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "GET / HTTP/1.1" 200 -
+2025-04-12 23:04:37,260 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:04:37,480 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:37,572 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:37,621 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:37,622 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-04-12 23:04:37,622 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:37,624 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:37,785 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:04:37,879 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:04:37] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:04:49,904 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:04:50,584 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:04:51,860 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:04:52,806 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:04:52,806 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:04:52,806 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:06:50,009 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:06:50,009 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:06:51,094 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:06:51,094 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:06:51,714 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:06:51,715 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:06:51,715 - asd_training - INFO - ===============================================
+2025-04-12 23:06:51,715 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:06:51,715 - asd_training - INFO - 运行环境: development
+2025-04-12 23:06:51,715 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:06:51,715 - asd_training - INFO - ===============================================
+2025-04-12 23:06:51,734 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.11:8000
+2025-04-12 23:06:51,735 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-12 23:06:51,743 - werkzeug - INFO -  * Restarting with watchdog (inotify)
+2025-04-12 23:07:00,087 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:07:00,090 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:07:01,039 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:07:01,039 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:07:01,723 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:07:01,723 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:07:01,724 - asd_training - INFO - ===============================================
+2025-04-12 23:07:01,724 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:07:01,725 - asd_training - INFO - 运行环境: development
+2025-04-12 23:07:01,725 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:07:01,725 - asd_training - INFO - ===============================================
+2025-04-12 23:07:01,739 - werkzeug - WARNING -  * Debugger is active!
+2025-04-12 23:07:01,740 - werkzeug - INFO -  * Debugger PIN: 942-683-130
+2025-04-12 23:07:05,036 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "GET / HTTP/1.1" 200 -
+2025-04-12 23:07:05,083 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:07:05,273 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:07:05,380 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:07:05,489 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:07:05,496 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:07:05,509 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:07:05,520 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:07:05,594 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:07:05,761 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:07:05,851 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:05] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:07:06,156 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:07:06] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:10:27,799 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:10:27,808 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:10:28,773 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:10:28,774 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:10:29,391 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:10:29,391 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:10:29,392 - asd_training - INFO - ===============================================
+2025-04-12 23:10:29,392 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:10:29,392 - asd_training - INFO - 运行环境: development
+2025-04-12 23:10:29,392 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:10:29,393 - asd_training - INFO - ===============================================
+2025-04-12 23:10:29,417 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.11:8000
+2025-04-12 23:10:29,417 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-12 23:10:29,426 - werkzeug - INFO -  * Restarting with watchdog (inotify)
+2025-04-12 23:10:37,948 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:10:37,954 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:10:38,866 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:10:38,867 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:10:40,128 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:10:40,128 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:10:40,128 - asd_training - INFO - ===============================================
+2025-04-12 23:10:40,129 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:10:40,129 - asd_training - INFO - 运行环境: development
+2025-04-12 23:10:40,129 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:10:40,130 - asd_training - INFO - ===============================================
+2025-04-12 23:10:40,146 - werkzeug - WARNING -  * Debugger is active!
+2025-04-12 23:10:40,147 - werkzeug - INFO -  * Debugger PIN: 942-683-130
+2025-04-12 23:10:41,149 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "GET / HTTP/1.1" 200 -
+2025-04-12 23:10:41,203 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:10:41,204 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:10:41,486 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:10:41,742 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:10:41,796 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:10:41,862 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:10:41,962 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:10:41,991 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:41] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:10:42,000 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:42] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:10:42,362 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:42] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:10:53,361 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:10:54,642 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:10:55,618 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:10:55,913 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:10:55,917 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:10:55,918 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:10:55,965 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:10:55,965 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:10:55,966 - asd_training - INFO - 集成检测完成
+2025-04-12 23:10:55,967 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:10:55,968 - asd_training - INFO - 集成检测完成
+2025-04-12 23:10:55,970 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:55] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:10:55,971 - asd_training - INFO - 集成检测完成
+2025-04-12 23:10:55,972 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:55] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:10:55,976 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:55] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:10:56,598 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:10:56,704 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:10:56,724 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:10:56,725 - asd_training - INFO - 集成检测完成
+2025-04-12 23:10:56,726 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:56] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:10:57,268 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:10:57,422 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:10:57,447 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:10:57,448 - asd_training - INFO - 集成检测完成
+2025-04-12 23:10:57,449 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:57] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:10:58,519 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:10:58,630 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:10:58,650 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:10:58,650 - asd_training - INFO - 开始分心事件记录
+2025-04-12 23:10:58,651 - asd_training - INFO - 集成检测完成
+2025-04-12 23:10:58,652 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:58] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:10:59,180 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:10:59,293 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:10:59,314 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:10:59,315 - asd_training - INFO - 结束分心事件记录
+2025-04-12 23:10:59,316 - asd_training - INFO - 集成检测完成
+2025-04-12 23:10:59,317 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:10:59] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:00,451 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:00,588 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:00,608 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:00,609 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:00,610 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:00] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:01,118 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:01,282 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:01,307 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:01,308 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:01,309 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:01] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:02,408 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:02,558 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:02,588 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:02,589 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:02,590 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:02] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:03,089 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:03,248 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:03,268 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:03,269 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:03,270 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:03] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:04,380 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:04,513 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:04,535 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:04,536 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:04,537 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:04] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:05,054 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:05,182 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:05,209 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:05,210 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:05,212 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:05] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:06,352 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:06,479 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:06,499 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:06,500 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:06,501 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:06] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:07,016 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:07,149 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:07,174 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:07,176 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:07,177 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:07] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:08,328 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:08,484 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:08,504 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:08,505 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:08,507 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:08] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:08,986 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:09,116 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:09,136 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:09,137 - asd_training - INFO - 开始分心事件记录
+2025-04-12 23:11:09,138 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:09,139 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:09] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:10,289 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:10,420 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:10,443 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:10,443 - asd_training - INFO - 结束分心事件记录
+2025-04-12 23:11:10,445 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:10,446 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:10] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:10,963 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:11,070 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:11,091 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:11,092 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:11,093 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:11] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:12,895 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:13,020 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:13,044 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:13,045 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:13,046 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:13] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:13,589 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:13,738 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:13,759 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:13,760 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:13,760 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:13] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:14,896 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:15,056 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:15,077 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:15,078 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:15,079 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:15] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:15,592 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:15,720 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:15,755 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:15,756 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:15,758 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:15] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:16,913 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:17,093 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:17,120 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:17,121 - asd_training - INFO - 开始分心事件记录
+2025-04-12 23:11:17,122 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:17,123 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:17] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:17,589 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:17,731 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:17,752 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:17,752 - asd_training - INFO - 结束分心事件记录
+2025-04-12 23:11:17,754 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:17,755 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:17] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:18,875 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:18,990 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:19,011 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:19,012 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:19,012 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:19] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:19,558 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:19,715 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:19,735 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:19,736 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:19,737 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:19] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:20,842 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:20,990 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:21,020 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:21,022 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:21,022 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:21] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:21,518 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:21,655 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:21,677 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:21,678 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:21,680 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:21] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:22,791 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:22,906 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:22,926 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:22,927 - asd_training - INFO - 开始分心事件记录
+2025-04-12 23:11:22,928 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:22,928 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:22] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:23,455 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:23,582 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:23,611 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:23,612 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:23,614 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:23] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:24,716 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:24,845 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:24,865 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:24,865 - asd_training - INFO - 结束分心事件记录
+2025-04-12 23:11:24,866 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:24,867 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:24] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:25,392 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:25,542 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:25,570 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:25,570 - asd_training - INFO - 开始分心事件记录
+2025-04-12 23:11:25,571 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:25,572 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:25] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:25,891 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:25] "[33mGET /static/images/virtual_happy.png HTTP/1.1[0m" 404 -
+2025-04-12 23:11:26,369 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:26,542 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:26,564 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:26,565 - asd_training - INFO - 结束分心事件记录
+2025-04-12 23:11:26,566 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:26,567 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:26] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:27,657 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:27,794 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:27,827 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:27,828 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:27,830 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:27] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:28,318 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:28,452 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:28,472 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:28,473 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:28,474 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:28] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:29,615 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:29,740 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:29,760 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:29,761 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:29,762 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:29] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:30,276 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:30,391 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:30,416 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:30,417 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:30,418 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:30] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:31,568 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:31,706 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:31,726 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:31,728 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:31,728 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:31] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:32,249 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:32,382 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:32,406 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:32,407 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:32,407 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:32] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:33,555 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:33,678 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:33,707 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:33,708 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:33,710 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:33] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:34,211 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:34,335 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:34,354 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:34,355 - asd_training - INFO - 开始分心事件记录
+2025-04-12 23:11:34,356 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:34,357 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:34] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:35,501 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:35,658 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:35,680 - asd_training - INFO - 注意力检测结果: 专注
+2025-04-12 23:11:35,681 - asd_training - INFO - 结束分心事件记录
+2025-04-12 23:11:35,682 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:35,684 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:35] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:36,184 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:36,318 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:36,342 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:36,343 - asd_training - INFO - 开始分心事件记录
+2025-04-12 23:11:36,344 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:36,345 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:36] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:37,463 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:37,617 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:37,637 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:37,637 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:37,639 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:37] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:38,151 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:38,284 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:38,309 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:38,310 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:38,311 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:38] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:39,439 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:39,555 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:39,574 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:39,575 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:39,575 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:39] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:40,103 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:40,216 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:40,235 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:40,236 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:40,237 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:40] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:41,397 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:41,545 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:41,564 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:41,565 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:41,566 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:41] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:42,068 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:42,196 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:42,215 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:42,216 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:42,217 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:42] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:42,534 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:42] "[33mGET /static/images/virtual_sad.png HTTP/1.1[0m" 404 -
+2025-04-12 23:11:43,054 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:43,183 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:43,201 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:43,202 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:43,202 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:43] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:44,338 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:44,470 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:44,489 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:44,489 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:44,490 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:44] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:45,015 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:45,152 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:45,176 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:45,177 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:45,178 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:45] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:46,861 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:47,022 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:47,044 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:47,045 - asd_training - INFO - 触发分心提醒
+2025-04-12 23:11:47,047 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:47,048 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:47] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:47,537 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:47,674 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:47,693 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:47,694 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:47,695 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:47] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:48,827 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:48,960 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:48,981 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:48,982 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:48,983 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:48] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:49,511 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:49,669 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:49,694 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:49,695 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:49,696 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:49] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:50,810 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:50,938 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:50,956 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:50,957 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:50,957 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:50] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:51,472 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:51,621 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:51,639 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:51,640 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:51,641 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:51] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:52,783 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:52,909 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:52,928 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:52,929 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:52,930 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:52] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:53,445 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:53,562 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:53,581 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:53,582 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:53,582 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:53] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:54,714 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:54,849 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:54,868 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:54,868 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:54,869 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:54] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:55,357 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:55,494 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:55,526 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:55,527 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:55,528 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:55] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:11:56,609 - asd_training - INFO - 接收到集成检测请求
+2025-04-12 23:11:56,739 - asd_training - INFO - 情绪检测结果: 1个人脸
+2025-04-12 23:11:56,757 - asd_training - INFO - 注意力检测结果: 分心
+2025-04-12 23:11:56,758 - asd_training - INFO - 集成检测完成
+2025-04-12 23:11:56,759 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:11:56] "POST /api/integrated_detect HTTP/1.1" 200 -
+2025-04-12 23:20:02,294 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "GET / HTTP/1.1" 200 -
+2025-04-12 23:20:02,342 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:20:02,516 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:02,652 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:02,752 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:02,763 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:02,771 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:02,778 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:20:02,834 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:02,984 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:02] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:20:03,116 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:03] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:20:03,437 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:03] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:20:43,957 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:43] "GET / HTTP/1.1" 200 -
+2025-04-12 23:20:44,281 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:20:44,314 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:20:44,324 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:44,411 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:44,418 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:44,422 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:44,600 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:44,650 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:20:44,651 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:20:44,745 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:20:44] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:29:58,785 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:58] "GET / HTTP/1.1" 200 -
+2025-04-12 23:29:58,812 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:58] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:29:58,978 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:58] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:29:59,103 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:29:59,181 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:29:59,188 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:29:59,199 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:29:59,217 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:29:59,278 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:29:59,411 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:29:59,530 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:29:59,829 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:29:59] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:30:34,784 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:30:34,785 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:30:36,375 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:30:36,375 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:30:37,049 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:30:37,049 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:30:37,050 - asd_training - INFO - ===============================================
+2025-04-12 23:30:37,050 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:30:37,050 - asd_training - INFO - 运行环境: development
+2025-04-12 23:30:37,050 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:30:37,050 - asd_training - INFO - ===============================================
+2025-04-12 23:30:37,070 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.11:8000
+2025-04-12 23:30:37,070 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-12 23:30:37,084 - werkzeug - INFO -  * Restarting with watchdog (inotify)
+2025-04-12 23:30:46,166 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:30:46,168 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:30:47,288 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:30:47,289 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:30:48,129 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:30:48,130 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:30:48,130 - asd_training - INFO - ===============================================
+2025-04-12 23:30:48,130 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:30:48,131 - asd_training - INFO - 运行环境: development
+2025-04-12 23:30:48,132 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:30:48,132 - asd_training - INFO - ===============================================
+2025-04-12 23:30:48,151 - werkzeug - WARNING -  * Debugger is active!
+2025-04-12 23:30:48,153 - werkzeug - INFO -  * Debugger PIN: 942-683-130
+2025-04-12 23:30:52,208 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "GET / HTTP/1.1" 200 -
+2025-04-12 23:30:52,211 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "GET / HTTP/1.1" 200 -
+2025-04-12 23:30:52,253 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,553 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,557 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,561 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,680 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,697 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,701 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,857 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:30:52,861 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,866 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:30:52,995 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:52,999 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:52] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:53,003 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:53] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:53,165 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:53] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:53,169 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:53] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:53,178 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:53] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:30:53,304 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:53] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:53,491 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:53] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:30:57,271 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "GET / HTTP/1.1" 200 -
+2025-04-12 23:30:57,579 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:30:57,607 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:57,610 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-04-12 23:30:57,652 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:57,659 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:57,668 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:57,888 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:57,917 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:30:57,918 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:30:57] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:35:16,512 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:35:16,513 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:35:18,125 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:35:18,125 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:35:18,920 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:35:18,920 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:35:18,920 - asd_training - INFO - ===============================================
+2025-04-12 23:35:18,920 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:35:18,920 - asd_training - INFO - 运行环境: development
+2025-04-12 23:35:18,920 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:35:18,920 - asd_training - INFO - ===============================================
+2025-04-12 23:35:18,945 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.11:8000
+2025-04-12 23:35:18,945 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-12 23:35:18,960 - werkzeug - INFO -  * Restarting with watchdog (inotify)
+2025-04-12 23:35:27,602 - asd_training - INFO - 开始初始化检测器
+2025-04-12 23:35:27,603 - asd_training - INFO - 加载情绪模型从: /home/ganxy/Documents/ASD_training/asd_training/models/emotion/cnn3_best_weights.h5
+2025-04-12 23:35:28,508 - asd_training - INFO - 情绪检测器加载成功
+2025-04-12 23:35:28,508 - asd_training - INFO - 加载注意力模型从: /home/ganxy/Documents/ASD_training/asd_training/models/attention/shape_predictor_68_face_landmarks.dat
+2025-04-12 23:35:29,123 - asd_training - INFO - 注意力检测器加载成功
+2025-04-12 23:35:29,123 - asd_training - INFO - 检测器初始化完成
+2025-04-12 23:35:29,123 - asd_training - INFO - ===============================================
+2025-04-12 23:35:29,123 - asd_training - INFO - 应用程序启动 - ASD训练系统
+2025-04-12 23:35:29,124 - asd_training - INFO - 运行环境: development
+2025-04-12 23:35:29,124 - asd_training - INFO - 日志文件: /home/ganxy/Documents/ASD_training/asd_training/logs/app_20250412.log
+2025-04-12 23:35:29,124 - asd_training - INFO - ===============================================
+2025-04-12 23:35:29,138 - werkzeug - WARNING -  * Debugger is active!
+2025-04-12 23:35:29,147 - werkzeug - INFO -  * Debugger PIN: 942-683-130
+2025-04-12 23:35:29,919 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:29] "GET / HTTP/1.1" 200 -
+2025-04-12 23:35:29,963 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:29] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:29,964 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:29] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:35:30,227 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:30,332 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:30,336 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:30,341 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-04-12 23:35:30,343 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:30,349 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:30,521 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:35:30,655 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:35:30,944 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:30] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -
+2025-04-12 23:35:44,776 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:44] "GET / HTTP/1.1" 200 -
+2025-04-12 23:35:45,080 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-12 23:35:45,108 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-04-12 23:35:45,110 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[36mGET /static/images/logo.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:45,168 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[36mGET /static/images/virtual.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:45,172 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[36mGET /static/images/happy.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:45,177 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[36mGET /static/images/sadness.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:45,401 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[36mGET /static/images/angry.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:45,433 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[36mGET /static/images/neutral.png HTTP/1.1[0m" 304 -
+2025-04-12 23:35:45,437 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:45] "[33mGET /static/sounds/alert.mp3 HTTP/1.1[0m" 404 -
+2025-04-12 23:35:53,910 - werkzeug - INFO - 127.0.0.1 - - [12/Apr/2025 23:35:53] "[35m[1mGET /static/images/background-music.mp3 HTTP/1.1[0m" 206 -

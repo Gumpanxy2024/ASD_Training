@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let totalDistractionTime = 0;
     let correctAnswers = 0;
     let totalQuestions = 0;
-    let totalQuestionsToComplete = 4; // 完成训练需要的总题目数
+    let totalQuestionsToComplete = 20; // 完成训练需要的总题目数
     
     // 性别设置变量
     let userGender = 'female'; // 默认为女生
@@ -181,14 +181,27 @@ document.addEventListener('DOMContentLoaded', function() {
     backgroundMusic.src = '/static/images/background-music.mp3'; // 更新音乐文件路径
     document.body.appendChild(backgroundMusic);
     
+    // 添加全局变量来跟踪欢迎动画是否完成
+    let welcomeAnimationCompleted = false;
+
     // 欢迎页面开始按钮点击事件
     welcomeStartBtn.addEventListener('click', function() {
         console.log("开始按钮被点击，准备显示训练内容");
         
+        // 防止动画未完成时切换
+        if (!welcomeAnimationCompleted && 
+            !urlParams.get('skip_welcome') === 'true') { // 添加URL参数检查
+            console.log("欢迎动画尚未完成，等待动画结束");
+            return;
+        }
+        
+        // 防止重复点击
+        this.disabled = true;
+        
         // 添加淡出动画
         welcomeScreen.classList.add('fade-out');
         
-        // 等待淡出动画完成后隐藏欢迎页面，显示训练内容
+        // 等待动画完成后处理
         setTimeout(() => {
             console.log("淡出动画完成，显示训练内容");
             
@@ -202,7 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // 移除body上的welcome-active类
             document.body.classList.remove('welcome-active');
             
-            // 可选：完全移除欢迎页面元素，防止它再次显示
+            // 初始化训练内容状态
+            initializeTrainingContent();
+            
+            // 可选：完全移除欢迎页面元素
             try {
                 welcomeScreen.parentNode.removeChild(welcomeScreen);
                 console.log("欢迎页面已从DOM中移除");
@@ -216,8 +232,43 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('播放音乐失败:', error);
                 });
             }
-        }, 500); // 500毫秒等待动画完成
+        }, 800); // 增加到800毫秒确保动画完全结束
     });
+    
+    // 添加初始化训练内容的函数
+    function initializeTrainingContent() {
+        // 重置训练状态
+        const emotionOptions = document.querySelectorAll('.emotion-option');
+        const feedbackCorrect = document.getElementById('feedback-correct');
+        const feedbackIncorrect = document.getElementById('feedback-incorrect');
+        
+        if (emotionOptions) emotionOptions.forEach(opt => opt.classList.remove('emotion-selected'));
+        if (feedbackCorrect) feedbackCorrect.classList.remove('show');
+        if (feedbackIncorrect) feedbackIncorrect.classList.remove('show');
+        
+        // 确保虚拟形象显示
+        const avatarImage = document.getElementById('avatar-image');
+        const videoElement = document.getElementById('video');
+        if (avatarImage && videoElement) {
+            avatarImage.style.display = 'block';
+            avatarImage.src = '/static/images/virtual.png';
+            videoElement.classList.add('video-hidden');
+            videoElement.classList.remove('w-full', 'h-full', 'object-cover');
+        }
+        
+        // 重置进度显示，但不要重复加载第一题
+        const progressText = document.getElementById('progress-text');
+        if (progressText) progressText.textContent = '0/20';
+        
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) progressBar.style.width = '0%';
+        
+        // 重要：隐藏摄像头切换按钮，直到训练开始
+        const toggleCameraBtn = document.getElementById('toggle-camera');
+        if (toggleCameraBtn) toggleCameraBtn.style.display = 'none';
+        
+        console.log("训练内容已初始化完成");
+    }
     
     // 初始播放音乐
     if (musicEnabled) {
@@ -328,8 +379,52 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // 开始训练时显示摄像头切换按钮，但不直接显示视频
                     startTrainingBtn.addEventListener('click', function() {
+                        if (isTraining) return;
+                        
+                        // 开始训练前先清除可能的旧状态
+                        emotionOptions.forEach(opt => opt.classList.remove('emotion-selected'));
+                        feedbackCorrect.classList.remove('show');
+                        feedbackIncorrect.classList.remove('show');
+                        
+                        // 确保虚拟形象正确显示
+                        const avatarImage = document.getElementById('avatar-image');
+                        if (avatarImage) avatarImage.src = '/static/images/virtual.png';
+                        
+                        // 确保当前问题状态是清晰的
+                        currentQuestionIndex = 0;
+                        
+                        // 开始训练
+                        isTraining = true;
+                        trainingStartTime = new Date();
+                        
+                        // 更新按钮状态
+                        startTrainingBtn.disabled = true;
+                        stopTrainingBtn.disabled = false;
+                        
+                        // 启用下一题按钮，禁用上一题按钮
+                        nextBtn.disabled = false;
+                        prevBtn.disabled = true;
+                        
                         // 显示摄像头切换按钮
-                        toggleCameraBtn.style.display = 'flex';
+                        if (toggleCameraBtn) toggleCameraBtn.style.display = 'flex';
+                        
+                        // 重要：在这里只加载一次第一题
+                        console.log("开始训练，加载第一题");
+                        loadNewQuestion(1);
+                        
+                        // 更新进度显示
+                        document.getElementById('progress-text').textContent = '1/20';
+                        document.getElementById('progress-bar').style.width = '5%';
+                        
+                        // 更新状态显示
+                        updateAvatarStatus("训练中，请保持专注");
+                        document.getElementById('current-emotion').innerHTML = `
+                            <span class="text-4xl">🔍</span>
+                            <p class="text-sm text-gray-700 mt-2">情绪分析中</p>
+                            <p class="text-xs text-gray-500">检测中...</p>
+                        `;
+                        
+                        document.getElementById('attention-status').textContent = "训练已开始，系统正在监测专注度";
                     });
                     
                     // 摄像头切换按钮点击事件
@@ -341,15 +436,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             avatarImage.style.display = 'none';
                             videoElement.classList.remove('video-hidden');
                             videoElement.classList.add('w-full', 'h-full', 'object-cover');
-                            toggleCameraBtn.innerHTML = '<i class="fas fa-user"></i>';
-                            toggleCameraBtn.title = '切换为虚拟形象';
                         } else {
                             // 显示虚拟形象
                             avatarImage.style.display = 'block';
                             videoElement.classList.add('video-hidden');
                             videoElement.classList.remove('w-full', 'h-full', 'object-cover');
-                            toggleCameraBtn.innerHTML = '<i class="fas fa-camera"></i>';
-                            toggleCameraBtn.title = '切换为摄像头';
                         }
                     });
                 }
@@ -640,13 +731,78 @@ document.addEventListener('DOMContentLoaded', function() {
         const progressText = document.getElementById('progress-text');
         const currentProgress = progressText.textContent.split('/');
         let current = parseInt(currentProgress[0]);
+        const total = parseInt(currentProgress[1]);
         
-        if (current === totalQuestionsToComplete) {
-            // 显示训练完成按钮
-            trainingComplete.classList.remove('hidden');
-            // 禁用导航按钮
-            nextBtn.disabled = true;
-            prevBtn.disabled = true;
+        if (current === total) {
+            // 当前场景的所有题目已完成
+            const sceneOptions = document.querySelectorAll('.scene-option');
+            const currentSceneElement = document.querySelector('.scene-selected');
+            
+            if (currentSceneElement && sceneOptions.length > 1) {
+                // 获取当前场景索引
+                let currentIndex = -1;
+                sceneOptions.forEach((option, index) => {
+                    if (option.classList.contains('scene-selected')) {
+                        currentIndex = index;
+                    }
+                });
+                
+                // 如果不是最后一个场景，自动切换到下一个场景
+                if (currentIndex >= 0 && currentIndex < sceneOptions.length - 1) {
+                    // 显示完成当前场景的反馈
+                    trainingComplete.classList.remove('hidden');
+                    
+                    // 添加切换到下一个场景的按钮
+                    const completeTrainingBtn = document.getElementById('complete-training-btn');
+                    completeTrainingBtn.textContent = '继续下一个场景';
+                    completeTrainingBtn.addEventListener('click', function() {
+                        // 切换到下一个场景
+                        trainingComplete.classList.add('hidden');
+                        
+                        // 选择下一个场景
+                        const nextScene = sceneOptions[currentIndex + 1];
+                        if (nextScene) {
+                            // 移除当前选中状态
+                            currentSceneElement.classList.remove('scene-selected');
+                            // 选中下一个场景
+                            nextScene.classList.add('scene-selected');
+                            
+                            // 更新场景标签
+                            const sceneName = nextScene.getAttribute('data-scene');
+                            const sceneLabels = {
+                                'school': '学校场景',
+                                'social': '社交场景',
+                                'transport': '交通场景',
+                                'food': '吃饭场景',
+                                'family': '家庭关系场景'
+                            };
+                            document.getElementById('current-scene-label').textContent = sceneLabels[sceneName] || '学校场景';
+                            
+                            // 重置进度和加载第一题
+                            document.getElementById('progress-text').textContent = '1/10';
+                            document.getElementById('progress-bar').style.width = '10%';
+                            loadNewQuestion(1);
+                            
+                            // 重置按钮状态
+                            nextBtn.disabled = false;
+                            prevBtn.disabled = true;
+                        }
+                    }, { once: true }); // 确保事件只触发一次
+                } else {
+                    // 如果是最后一个场景，显示训练全部完成
+                    trainingComplete.classList.remove('hidden');
+                    document.getElementById('complete-training-btn').textContent = '结束训练';
+                    // 禁用导航按钮
+                    nextBtn.disabled = true;
+                    prevBtn.disabled = true;
+                }
+            } else {
+                // 只有一个场景或未找到当前场景元素
+                trainingComplete.classList.remove('hidden');
+                // 禁用导航按钮
+                nextBtn.disabled = true;
+                prevBtn.disabled = true;
+            }
         }
     }
 
@@ -743,30 +899,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateAvatarStatus(`已切换表情：${getExpressionName(newExpression)}`);
             }
         });
-    }
-    
-    // 获取样式中文名称
-    function getStyleName(style) {
-        const styleNames = {
-            'default': '默认',
-            'casual': '休闲',
-            'formal': '正式',
-            'sporty': '运动'
-        };
-        return styleNames[style] || style;
-    }
-    
-    // 获取表情中文名称
-    function getExpressionName(expression) {
-        const expressionNames = {
-            'neutral': '平静',
-            'happy': '开心',
-            'sad': '伤心',
-            'surprised': '惊讶',
-            'wink': '眨眼',
-            'thinking': '思考'
-        };
-        return expressionNames[expression] || expression;
     }
 
     // 重新开始按钮功能
@@ -1011,7 +1143,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // 更新问题文本
         const questionElement = document.getElementById('question-text');
         if (questionElement) {
-            questionElement.textContent = question;
+            // 先移除之前的动画类
+            questionElement.classList.remove('question-highlight');
+            
+            // 添加短暂的延迟后设置新内容，产生内容替换的效果
+            setTimeout(() => {
+                questionElement.textContent = question;
+                
+                // 添加动画类来突出显示新问题
+                questionElement.classList.add('question-highlight');
+            }, 50);
         }
     }
 
@@ -1030,32 +1171,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 实现开始训练功能
-    startTrainingBtn.addEventListener('click', function() {
-        if (isTraining) return;
-        
-        // 开始训练
-        isTraining = true;
-        trainingStartTime = new Date();
-        
-        // 更新按钮状态
-        startTrainingBtn.disabled = true;
-        stopTrainingBtn.disabled = false;
-        
-        // 启用导航按钮
-        nextBtn.disabled = false;
-        
-        // 更新状态显示
-        updateAvatarStatus("训练中，请保持专注");
-        document.getElementById('current-emotion').innerHTML = `
-            <span class="text-4xl">🔍</span>
-            <p class="text-sm text-gray-700 mt-2">情绪分析中</p>
-            <p class="text-xs text-gray-500">检测中...</p>
-        `;
-        
-        document.getElementById('attention-status').textContent = "训练已开始，系统正在监测专注度";
-    });
-    
     // 终止训练按钮点击事件
     stopTrainingBtn.addEventListener('click', function() {
         if (isTraining) {
@@ -1305,4 +1420,19 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('保存训练记录失败，请检查网络连接');
         }
     });
+
+    // 在每次场景切换或训练停止时恢复虚拟形象
+    function restoreVirtualAvatar() {
+        const avatarImage = document.getElementById('avatar-image');
+        const videoElement = document.getElementById('video');
+        
+        if (avatarImage && videoElement) {
+            // 显示虚拟形象
+            avatarImage.style.display = 'block';
+            videoElement.classList.add('video-hidden');
+            
+            // 确保使用默认图片
+            avatarImage.src = '/static/images/virtual.png';
+        }
+    }
 });
